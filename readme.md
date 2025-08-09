@@ -1,69 +1,181 @@
 Multiclass Fish Image Classification
-This project provides a robust solution for classifying fish images into 11 species categories using a variety of deep learning models. It offers a comprehensive approach, including the development of a custom Convolutional Neural Network (CNN) and the fine-tuning of five pre-trained models. The project also includes a user-friendly Flask web application for real-time predictions, making it a complete end-to-end solution for fish image classification.
+Project Overview
+This repository hosts a comprehensive deep learning project dedicated to the multiclass classification of fish images into 11 distinct species categories. The project explores both training a Custom Convolutional Neural Network (CNN) from scratch and leveraging transfer learning with five powerful pre-trained models: VGG16, ResNet50, MobileNetV2, InceptionV3, and EfficientNetB0.
 
-This repository is structured to showcase different deep learning techniques and their effectiveness, serving as a practical guide for model development, evaluation, and deployment.
+Beyond model development and rigorous evaluation, this project culminates in a Flask-based web application that enables real-time predictions on user-uploaded fish images, offering a practical demonstration of model deployment.
 
-Skills Developed
-This project offers a great opportunity to gain hands-on experience with a wide range of skills essential for a career in machine learning and data science:
+Key Features & Technologies
+This project provides hands-on experience and demonstrates proficiency in:
 
-Deep Learning: Training and fine-tuning neural networks.
+Deep Learning Fundamentals: Training and fine-tuning neural networks for image classification.
 
-Python: Scripting and application development.
+Python Programming: Core scripting and application logic.
 
-TensorFlow/Keras: Building and managing deep learning models.
+TensorFlow & Keras: Building, configuring, and managing deep learning models.
 
-Flask: Deploying machine learning models as web applications.
+Flask for Model Deployment: Creating a user-friendly web interface for real-time inference.
 
-Data Preprocessing: Preparing image data for model training.
+Data Preprocessing & Augmentation: Techniques to prepare and enhance image datasets for robust model training.
 
-Transfer Learning: Leveraging powerful pre-trained models for new tasks.
+Transfer Learning: Effectively utilizing pre-trained architectures for domain-specific tasks.
 
-Model Evaluation: Using metrics like accuracy, precision, and recall to assess performance.
+Comprehensive Model Evaluation: Analyzing performance using various metrics (accuracy, precision, recall, F1-score, confusion matrices).
 
-Visualization: Creating plots to understand model behavior.
+Data Visualization: Plotting training history (accuracy and loss) for insights.
 
-Model Deployment: Creating a practical, deployed application.
+Problem Statement & Business Applications
+The core objective of this project is to accurately classify fish images into their respective 11 species categories using advanced deep learning techniques. This involves training and comparing multiple models, saving their best states, and deploying them within an accessible web application.
 
-Project Goal and Approach
-The primary goal is to accurately classify fish images into 11 distinct species. To achieve this, the project explores and compares two key deep learning strategies:
+Potential Business Use Cases:
 
-Training a Custom CNN from scratch: This involves building a neural network architecture specifically tailored for this problem.
+Fisheries Management: Automated identification of fish species for stock assessment and monitoring.
 
-Fine-tuning five pre-trained models using transfer learning: This approach leverages the powerful feature extraction capabilities of models like VGG16, ResNet50, MobileNetV2, InceptionV3, and EfficientNetB0, which were originally trained on massive datasets like ImageNet.
+Aquaculture: Disease detection and growth monitoring through visual inspection.
 
-The project follows a systematic approach:
+Retail & Quality Control: Ensuring correct labeling and quality assurance for seafood products.
 
-Data Preparation: Images are preprocessed and augmented (e.g., rotated, zoomed, flipped) to improve model robustness.
+Environmental Monitoring: Tracking biodiversity and species distribution in aquatic ecosystems.
 
-Model Training: Both the custom CNN and pre-trained models are trained on the prepared dataset, and the best-performing versions are saved.
+Educational Tools: Interactive applications for learning about marine life.
 
-Evaluation and Comparison: Each model is evaluated using a suite of metrics, and a detailed comparison is made to determine the most effective architecture.
+Approach & Methodology
+The project follows a structured methodology, encompassing data handling, model development, evaluation, and deployment:
 
-Deployment: A Flask web application is developed to demonstrate real-time predictions on user-uploaded images.
+Data Preprocessing and Augmentation:
+
+Images are rescaled to a [0, 1] range for optimal model input.
+
+Applied real-time data augmentation (e.g., rotation, zoom, horizontal flipping) using ImageDataGenerator to prevent overfitting and enhance model generalization.
+
+Model Training:
+
+Custom CNN: A Convolutional Neural Network architecture is designed and trained from scratch.
+
+Transfer Learning Models: Pre-trained models (VGG16, ResNet50, MobileNetV2, InceptionV3, EfficientNetB0) are loaded and fine-tuned by unfreezing top layers and adding custom classification heads.
+
+Models with the highest validation accuracy are saved in the .h5 format.
+
+Model Evaluation:
+
+Performance metrics such as accuracy, precision, recall, and F1-score are calculated for each model.
+
+Confusion matrices are generated to understand class-wise performance.
+
+Training history (accuracy and loss curves) are visualized to monitor model learning.
+
+Deployment (Flask Application):
+
+A lightweight Flask web application is developed to host the trained models.
+
+The app supports image uploads (.jpg, .jpeg, .png formats).
+
+It predicts and displays the fish category along with a confidence score.
+
+It also displays evaluation metrics for the currently selected model.
+
+Dataset
+Source: A zipped dataset containing fish images categorized into 11 distinct species. Examples include animal fish, animal fish bass, fish sea_food black_sea_sprat, etc.
+
+Processing: Images are loaded and prepared for training and validation using TensorFlow's ImageDataGenerator, which handles resizing, normalization, and augmentation.
 
 Project Deliverables
-Trained Models: Optimized .h5 files for all six models.
+Trained Models: .h5 files for the Custom CNN, VGG16, ResNet50, MobileNetV2, InceptionV3, and EfficientNetB0 models, representing their best-performing weights.
 
-Flask Application: A functional web application for real-time fish species prediction.
+Flask Application: app.py and associated HTML/CSS templates for the interactive web predictor.
 
-Python Scripts: Code for model training, evaluation, and deployment.
+Python Scripts: Separate scripts for model training (train_custom_cnn.py, adapt_vgg16.py, adapt_eff_net.py, etc.), data loading, and utility functions.
 
-Performance Report: A comprehensive comparison of model metrics and visualizations.
+Comparison Report: Detailed performance metrics and visualizations in a human-readable format, often presented within Jupyter Notebooks or additional markdown files.
 
 Model Performance Comparison
-This table summarizes the performance of the trained models based on key metrics:
+The table below summarizes the performance of all trained models as of 06:45 PM IST, Saturday, August 09, 2025.
 
-Model	Accuracy	Precision	Recall	F1-score	Remarks
-Custom CNN	75.9%	Medium	High	Medium	A lightweight model, shows promise with class imbalance.
-VGG16	80%+	High	High	High	A stable and highly reliable model, ideal for production.
-ResNet50	79%+	High	Medium	High	A very deep architecture, with potential for further tuning.
-MobileNetV2	~78%	Medium	Medium	Medium	Excellent performance for its size, suitable for mobile deployment.
-InceptionV3	80%+	High	High	High	A strong feature extractor, delivers high accuracy.
-EfficientNetB0	81%+	High	High	High	The top performer, offering the best trade-off between accuracy and model size.
+Model
 
-Export to Sheets
-Detailed Classification Report (Custom CNN)
-This classification report for the Custom CNN provides a granular view of its performance on each fish species.  It highlights the model's strengths and weaknesses, such as high precision for red_mullet but lower performance for a rare class like animal fish bass.
+Accuracy
+
+Precision
+
+Recall
+
+F1-score
+
+Remarks
+
+Custom CNN
+
+75.9%
+
+Medium
+
+High
+
+Medium
+
+Lightweight, relatively good for rare classes.
+
+VGG16
+
+80%+
+
+High
+
+High
+
+High
+
+Stable and production-ready.
+
+ResNet50
+
+79%+
+
+High
+
+Medium
+
+High
+
+Deeper architecture, potential for tuning.
+
+MobileNetV2
+
+~78%
+
+Medium
+
+Medium
+
+Medium
+
+Efficient and suitable for mobile deployment.
+
+InceptionV3
+
+80%+
+
+High
+
+High
+
+High
+
+Strong feature extractor, robust performance.
+
+EfficientNetB0
+
+81%+
+
+High
+
+High
+
+High
+
+Best overall trade-off: accuracy & size.
+
+Detailed Classification Report for Custom CNN
+Here's the detailed classification report for the Custom CNN, highlighting its per-class performance:
 
 Classification Report for Custom CNN:
 
@@ -71,66 +183,140 @@ Classification Report for Custom CNN:
 
          animal fish       0.99      0.60      0.75       520
     animal fish bass       0.05      0.77      0.10        13
-black_sea_sprat       0.92      0.86      0.89       298
-  gilt_head_bream       0.58      0.31      0.40       305
-  hourse_mackerel       0.67      0.83      0.74       286
-      red_mullet       0.94      1.00      0.97       291
-   red_sea_bream       0.74      0.84      0.79       273
-        sea_bass       0.63      0.49      0.55       327
-          shrimp       0.73      0.98      0.84       289
-striped_red_mullet       0.90      0.60      0.72       303
-           trout       0.68      0.98      0.80       302
+fish sea_food black_sea_sprat       0.92      0.86      0.89       298
+fish sea_food gilt_head_bream       0.58      0.31      0.40       305
+fish sea_food hourse_mackerel       0.67      0.83      0.74       286
+     fish sea_food red_mullet       0.94      1.00      0.97       291
+  fish sea_food red_sea_bream       0.74      0.84      0.79       273
+       fish sea_food sea_bass       0.63      0.49      0.55       327
+         fish sea_food shrimp       0.73      0.98      0.84       289
+fish sea_food striped_red_mullet       0.90      0.60      0.72       303
+       fish sea_food trout       0.68      0.98      0.80       302
 
         accuracy                           0.73      3207
        macro avg       0.71      0.75      0.69      3207
     weighted avg       0.79      0.73      0.74      3207
-Project Setup and Usage
-Follow these steps to set up and run the project:
 
-Clone the Repository:
+Note: The animal fish bass class has very low support (only 13 samples), which significantly impacts its precision and F1-score. This imbalance is a key area for future improvement.
 
-Bash
+Setup and Usage Guide
+Follow these steps to get the project up and running locally:
 
-git clone <repository-url>
+1. Clone the Repository
+git clone <your-repository-url>
 cd multi_fish_classifier
-Install Dependencies:
 
-Bash
+2. Install Dependencies
+It's recommended to use a virtual environment.
 
+python -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 pip install flask tensorflow numpy pillow
-Prepare the Dataset:
 
-Download the dataset and extract the zip file.
+3. Prepare the Dataset
+Obtain the dataset (zip file containing fish images categorized into 11 species).
 
-Organize the images into data/train/ and data/val/ directories, with subfolders for each fish species.
+Crucially, extract the dataset into a data/ directory within your project root. The structure should resemble:
 
-Train Models (Optional):
+multi_fish_classifier/
+├── data/
+│   ├── train/
+│   │   ├── animal fish/
+│   │   ├── animal fish bass/
+│   │   └── ... (other species folders)
+│   └── val/
+│       ├── animal fish/
+│       ├── animal fish bass/
+│       └── ... (other species folders)
+├── app.py
+├── adapt_eff_net.py
+└── ... (other project files)
 
-Use the provided training scripts (e.g., eff_net.py) to train or retrain the models.
+4. Run Training Scripts (Optional)
+If you wish to train the models from scratch or re-train them, execute the respective Python scripts:
 
-The scripts will save the best-performing models as .h5 files.
+python train_custom_cnn.py
+python adapt_vgg16.py
+python adapt_resnet50.py
+python adapt_mobilenetv2.py
+python adapt_inceptionv3.py
+python adapt_eff_net.py
 
-Run the Flask Application:
+These scripts will save the best-performing models (e.g., efficientnetb0_best.h5) and training history files (.pkl) in the project directory.
 
-Ensure your model files (e.g., efficientnetb0_best.h5) are in the project directory.
-
-Run the main application script:
-
-Bash
+5. Run the Flask Application
+Before running, ensure your trained model files (e.g., efficientnetb0_best.h5, custom_cnn_best.h5) are present in the root directory where app.py resides.
 
 python app.py
-Access the Web App:
 
-Open your web browser and navigate to http://127.0.0.1:5000.
+6. Access the Web Application
+Open your web browser and navigate to:
 
-Select a model from the dropdown, upload a fish image, and see the real-time prediction.
+http://127.0.0.1:5000
 
-Notes and Improvements
-Best Model: EfficientNetB0 consistently delivered the highest accuracy (81%+), making it the recommended choice.
+You can select different models from a dropdown.
 
-Areas for Improvement: The performance on the animal fish bass class is low due to a small number of training samples. This could be addressed by using data augmentation or oversampling techniques to balance the dataset.
+Upload a .jpg, .jpeg, or .png image of a fish.
 
-Contributions: Contributions are welcome! Feel free to open issues or submit pull requests.
+The application will display the predicted fish category and its confidence score.
 
+Example Output
+Web Interface
+The web interface will feature a dropdown to select the model and an area to upload images.
 
+Sample Prediction Output (Custom CNN)
+After uploading an image, you'll see a prediction similar to this:
+
+Predicted Fish Category: animal fish
+Confidence: 54.78%
+
+Model Evaluation Metrics (Custom CNN)
+Below the prediction, model evaluation metrics for the selected model will be displayed:
+
+Validation Accuracy: 0.7592
+Validation Loss: 0.6023
+
+Note: For classes with low sample support, like animal fish bass, the confidence scores and reliability of predictions might be lower.
+
+Predicted Fish Category: animal fish bass
+Confidence: 45.00%
+
+Notes and Future Improvements
+Best Performing Model: EfficientNetB0 demonstrated the highest accuracy (81%+) and is set as the default model in the Flask application due to its excellent balance of performance and efficiency. VGG16 and InceptionV3 also performed very well (80%+ accuracy).
+
+Addressing Data Imbalance: The animal fish bass class suffers from a significant data imbalance (only 13 samples). Future work could focus on:
+
+Oversampling: Techniques like SMOTE or simply duplicating existing samples.
+
+Augmentation Strategies: More aggressive augmentation specifically for underrepresented classes.
+
+Weighted Loss Functions: Adjusting the loss function to give more weight to minority classes during training.
+
+Model Optimization: Further hyperparameter tuning for ResNet50 and other models could yield better results.
+
+Performance Monitoring: Implement more advanced logging and monitoring for deployment.
+
+Contributions
+Contributions are highly welcome! If you have suggestions, bug reports, or want to add new features, please feel free to:
+
+Open an Issue: Describe the bug or feature request clearly.
+
+Submit a Pull Request:
+
+Fork the repository.
+
+Create a new branch for your changes (git checkout -b feature/my-new-feature).
+
+Make your changes and ensure tests (if any) pass.
+
+Commit your changes (git commit -m 'feat: Add new feature X').
+
+Push to your branch (git push origin feature/my-new-feature).
+
+Open a pull request to the main branch.
+
+Please ensure your code adheres to consistent naming conventions and modular design.
+
+License
+This project is licensed under the MIT License. See the LICENSE file for more details.
 
