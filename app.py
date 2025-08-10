@@ -1,5 +1,4 @@
 import os
-import subprocess
 import gdown
 import numpy as np
 import matplotlib.pyplot as plt
@@ -8,15 +7,13 @@ from pathlib import Path
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from sklearn.metrics import confusion_matrix, classification_report
+import zipfile
 
 # ==============================
 # CONFIGURATION
 # ==============================
-FOLDER_LINKS = {
-    "train": "https://drive.google.com/drive/folders/1_NjJhsEiZbhN3ZB5o59Dk8OR4ka-Mgtq",
-    "val": "https://drive.google.com/drive/folders/14Z79rJiZGT8esEStqMzAx-xgaCQbrhjM",
-    "test": "https://drive.google.com/drive/folders/1CVZWrxf5w46uJuP1MXBiKvNh3K_n3LXg"
-}
+DATASET_ZIP_ID = "11Q2g3uiotlX0pRDe-Vibn2z3XJLO_Hy_"
+ZIP_PATH = "dataset.zip"
 
 MODEL_LINKS = {
     "EfficientNetB0": "1UBfUF_kOWY_mnl9hm4BzRprBvERCb2kq",
@@ -33,17 +30,19 @@ plots_dir = Path("plots")
 plots_dir.mkdir(exist_ok=True)
 
 # ==============================
-# DOWNLOAD DATA FOLDERS
+# DOWNLOAD & EXTRACT DATASET
 # ==============================
-def download_drive_folder(name, url):
-    if not os.path.exists(name):
-        print(f"Downloading {name} folder from Google Drive...")
-        subprocess.run(["gdown", "--folder", url, "-O", name])
-    else:
-        print(f"{name} folder already exists.")
+if not os.path.exists(ZIP_PATH):
+    print("Downloading dataset zip from Google Drive...")
+    gdown.download(f"https://drive.google.com/uc?id={DATASET_ZIP_ID}", ZIP_PATH, quiet=False)
 
-for name, url in FOLDER_LINKS.items():
-    download_drive_folder(name, url)
+if not (os.path.exists("train") and os.path.exists("val") and os.path.exists("test")):
+    print("Extracting dataset zip...")
+    with zipfile.ZipFile(ZIP_PATH, 'r') as zip_ref:
+        zip_ref.extractall(".")
+    print("Dataset extracted successfully.")
+else:
+    print("Dataset folders already exist.")
 
 train_dir = "train"
 val_dir = "val"
@@ -130,6 +129,5 @@ for i, acc in enumerate(evaluation_metrics.values()):
 plt.tight_layout()
 plt.savefig(plots_dir / "model_comparison.png")
 plt.close()
-
 
 
