@@ -1,8 +1,6 @@
-gdown
-tensorflow
-flask
-pillow
+tensorflow==2.15.0
 numpy
 matplotlib
-sklearn
 seaborn
+scikit-learn
+gdown
