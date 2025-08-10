@@ -4,3 +4,5 @@ flask
 pillow
 numpy
 matplotlib
+sklearn
+seaborn
